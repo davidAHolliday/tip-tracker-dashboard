@@ -23,6 +23,7 @@ import axios from "axios";
         console.error(error)
       })
   
+      //force commiet
     },[date,update])
     return(
         <div className='summary-box'>
