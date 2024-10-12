@@ -15,6 +15,7 @@ function App() {
     timeIn:'',
     timeOut:'',
     creditCardTips:'',
+    svcCharge:'',
     tipOut:'',
     holliday:false,
   })
@@ -37,6 +38,7 @@ function App() {
       timeIn: new Date(formData.timeIn).toISOString(),
       timeOut: new Date(formData.timeOut).toISOString(),
       creditCardTips: parseFloat(formData.creditCardTips),
+      svcCharge: parseFloat(formData.svcCharge),
       tipOut: parseFloat(formData.tipOut),
     };
 
@@ -47,6 +49,7 @@ function App() {
           timeIn:'',
           timeOut:'',
           creditCardTips:'',
+          svcCharge:'',
           tipOut:'',
           holliday:false,
         })
@@ -94,6 +97,17 @@ function App() {
           type="number"
           name="creditCardTips"
           value={formData.creditCardTips}
+          onChange={handleChange}
+          required
+        />
+      </div>
+
+      <div>
+        <label>Svc Charge Tips:</label>
+        <input
+          type="number"
+          name="svcCharge"
+          value={formData.svcCharge}
           onChange={handleChange}
           required
         />

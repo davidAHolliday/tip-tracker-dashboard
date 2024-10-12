@@ -29,12 +29,12 @@ import axios from "axios";
           <tr>
             <th>Hours Worked This week</th>
             <th>Amount Remaining to Goal</th>
-            <th>Days Left in Week</th>
+            <th>Svc Charge Earned</th>
           </tr>
           <tr>
             <td>{summaryData?.summary?.hoursWorkedThisPeriod.toFixed(2) || 'N/A'}</td>
             <td>{summaryData?.amountNeededToGoal || 'N/A'}</td>
-            <td>{summaryData?.daysLeftInWeek || 'N/A'}</td>
+            <td>{summaryData?.summary?.svcChargeThisPeriod || 'N/A'}</td>
           </tr>
           <tr>
             <th>Total Credit Cards</th>
@@ -44,7 +44,7 @@ import axios from "axios";
           <tr>
             <td>{summaryData?.summary?.creditCardTipsThisPeriod || 'N/A'}</td>
             <td>{summaryData?.hourlyPayEarned || 'N/A'}</td>
-            <td>{(summaryData?.summary?.creditCardTipsThisPeriod + summaryData?.hourlyPayEarned) || 'N/A'}</td>
+            <td>{(summaryData?.summary?.creditCardTipsThisPeriod + summaryData?.hourlyPayEarned + summaryData?.summary?.svcChargeThisPeriod) || 'N/A'}</td>
           </tr>
         </table>
       </div>

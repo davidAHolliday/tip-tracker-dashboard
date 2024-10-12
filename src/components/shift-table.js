@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from "react";
 import axios from "axios";
 
-  const ShiftTable = ({formData}) =>{
+  const ShiftTable = () =>{
     const [shiftData,setShiftData] = useState([])
 
 
@@ -16,7 +16,7 @@ import axios from "axios";
         console.error(error)
       })
   
-    },[formData])
+    },[])
 
     return(
       <div className='shift-table'>
@@ -29,10 +29,12 @@ import axios from "axios";
           <th>Holiday</th>
         </thead>
         <tbody>
-          {shiftData.map((record, index) => {
+          {shiftData.sort((a, b) => new Date(a.timeIn) - new Date(b.timeIn)).map((record, index) => {
+            const formatDateTime = `${new Date(record.timeIn).getMonth()+1}/${new Date(record.timeIn).getDate()}/${new Date(record.timeIn).getFullYear()}`
+            console.log(formatDateTime, 'findme')
             return (
               <tr className='record-row' key={index}>
-                <td>{record.timeStamp}</td>
+                <td>{formatDateTime}</td>
                 <td>{record.hoursWorked}</td>
                 <td>{record.creditCardTips}</td>
                 <td>{record.tipOut}</td>
