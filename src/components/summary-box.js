@@ -1,11 +1,20 @@
 import React, {useEffect,useState} from "react";
 import axios from "axios";
 
-  const SummaryBox = () =>{
+  const SummaryBox = ({date,update}) =>{
     const [summaryData, setSummaryData] = useState([])
+
+    const formatDate = (date) => {
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+        const day = String(date.getDate()).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${month}-${day}-${year}`;
+      };
   
     useEffect(()=>{
-      axios.get('https://tip-tracker-dashboard-backend.vercel.app/api/summary')
+        const formattedDate = formatDate(date);
+
+      axios.get(`https://tip-tracker-dashboard-backend.vercel.app/api/summary/${formattedDate}`)
       .then(function(response){
         console.log(response)
         setSummaryData(response.data)
@@ -14,7 +23,7 @@ import axios from "axios";
         console.error(error)
       })
   
-    },[])
+    },[date,update])
     return(
         <div className='summary-box'>
         <table>

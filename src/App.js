@@ -13,7 +13,7 @@ function App() {
 
   const [viewDate, setViewDate] = useState(new Date())
 
-  const todayDate = new Date().toISOString();
+  const [update,setUpdate]= useState(false)
   const [formData, setFormData] = useState({
     timeIn:'',
     timeOut:'',
@@ -64,7 +64,7 @@ function App() {
           tipOut:'',
           holliday:false,
         })
-        window.location.reload();
+        setUpdate(prev=>!prev)
         console.log('Data posted successfully:', response.data);
       })
       .catch((error) => {
@@ -84,8 +84,8 @@ function App() {
       <div className="App">
       <button onClick={()=>handleDateChange(-1)}> Back</button><button onClick={()=>handleDateChange(1)}> Next</button><h1>{formatDate(viewDate)}</h1>
       <button onClick={()=>setViewDate(new Date())}> Today</button>
-      <SummaryBox  date={todayDate}/>
-      <ShiftTable   date={viewDate}/>
+      <SummaryBox  date={viewDate} update={update} setUpdate={setUpdate}/>
+      <ShiftTable   date={viewDate} update={update} setUpdate={setUpdate}/>
       <form onSubmit={handleSubmit}>
       <div>
         <label>Time In:</label>
