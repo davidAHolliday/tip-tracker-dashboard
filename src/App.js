@@ -10,6 +10,9 @@ import ShiftTable from './components/shift-table';
 
 
 function App() {
+
+  const [viewDate, setViewDate] = useState(new Date())
+
   const todayDate = new Date().toISOString();
   const [formData, setFormData] = useState({
     timeIn:'',
@@ -20,6 +23,14 @@ function App() {
     holliday:false,
   })
 
+
+  const handleDateChange = (delta) => {
+    setViewDate((prev) => {
+      const newDate = new Date(prev); // Create a new Date object to avoid mutating state directly
+      newDate.setDate(newDate.getDate() + (delta * 7)); // Adjust by delta * 7 days (weekly shift)
+      return newDate; // Return the new date to update the state
+    });
+  };
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -61,13 +72,20 @@ function App() {
       });
   };
 
+  const formatDate = (date) => {
+    const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}-${day}-${year}`;
+  };
 
 
   return (
       <div className="App">
-      <h1>{todayDate}</h1>
+      <button onClick={()=>handleDateChange(-1)}> Back</button><button onClick={()=>handleDateChange(1)}> Next</button><h1>{formatDate(viewDate)}</h1>
+      <button onClick={()=>setViewDate(new Date())}> Today</button>
       <SummaryBox  date={todayDate}/>
-      <ShiftTable  date={todayDate}/>
+      <ShiftTable   date={viewDate}/>
       <form onSubmit={handleSubmit}>
       <div>
         <label>Time In:</label>
