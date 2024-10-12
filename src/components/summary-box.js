@@ -5,7 +5,7 @@ import axios from "axios";
     const [summaryData, setSummaryData] = useState([])
   
     useEffect(()=>{
-      axios.get('http://localhost:3000/api/summary')
+      axios.get('https://tip-tracker-dashboard-backend.vercel.app/api/summary')
       .then(function(response){
         console.log(response)
         setSummaryData(response.data)

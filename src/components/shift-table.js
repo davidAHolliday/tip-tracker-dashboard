@@ -7,7 +7,7 @@ import axios from "axios";
 
     useEffect(()=>{
       //Make Date Dynamic
-      axios.get('http://localhost:3000/api/payPeriod/10-08-2024')
+      axios.get('https://tip-tracker-dashboard-backend.vercel.app/api/payPeriod/10-08-2024')
       .then(function(response){
         console.log(response)
         setShiftData(response.data)

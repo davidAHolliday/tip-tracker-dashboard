@@ -43,7 +43,7 @@ function App() {
     };
 
     // Send POST request
-    axios.post('http://localhost:3000/api/daily', formattedData)
+    axios.post('https://tip-tracker-dashboard-backend.vercel.app/api/daily', formattedData)
       .then((response) => {
         setFormData({
           timeIn:'',
