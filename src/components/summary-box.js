@@ -48,12 +48,12 @@ import axios from "axios";
           </tr>
           <tr>
             <th>Total Credit Cards</th>
-            <th>Total Hourly Earned</th>
+            <th>Hours Worked @ $5.45</th>
             <th>Total Earning CC + Hr</th>
           </tr>
           <tr>
             <td>{summaryData?.summary?.creditCardTipsThisPeriod || 'N/A'}</td>
-            <td>{summaryData?.hourlyPayEarned || 'N/A'}</td>
+            <td>{summaryData?.hourlyPayEarned.toFixed(2) || 'N/A'}</td>
             <td>{(summaryData?.summary?.creditCardTipsThisPeriod + summaryData?.hourlyPayEarned + summaryData?.summary?.svcChargeThisPeriod) || 'N/A'}</td>
           </tr>
         </table>
