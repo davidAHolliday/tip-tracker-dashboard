@@ -54,7 +54,7 @@ import axios from "axios";
           <tr>
             <td>{summaryData?.summary?.creditCardTipsThisPeriod || 'N/A'}</td>
             <td>{summaryData?.hourlyPayEarned.toFixed(2) || 'N/A'}</td>
-            <td>{(summaryData?.summary?.creditCardTipsThisPeriod + summaryData?.hourlyPayEarned + summaryData?.summary?.svcChargeThisPeriod) || 'N/A'}</td>
+            <td>{(summaryData?.summary?.creditCardTipsThisPeriod + summaryData?.hourlyPayEarned + summaryData?.summary?.svcChargeThisPeriod).toFixed(2) || 'N/A'}</td>
           </tr>
         </table>
       </div>

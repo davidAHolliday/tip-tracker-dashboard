@@ -60,7 +60,7 @@ import axios from "axios";
             return (
               <tr className='record-row' key={index}>
                 <td>{formatDateTime}</td>
-                <td>{record.hoursWorked}</td>
+                <td>{record.hoursWorked.toFixed(2)}</td>
                 <td>{record.creditCardTips}</td>
                 <td>{record.tipOut}</td>
                 <td>{record.holliday? "True":""}</td>
