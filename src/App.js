@@ -24,6 +24,17 @@ function App() {
   })
 
 
+  const firstDate = new Date(viewDate); // Create a new Date object to avoid mutating viewDate
+
+  // Calculate the first day of the week (Sunday)
+  const firstDayOfWeek = new Date(firstDate.setDate(viewDate.getDate() - viewDate.getDay()));
+  
+  // Calculate the last day of the week (Saturday)
+  const lastDateOfWeek = new Date(firstDayOfWeek); // Start from the first day of the week
+  lastDateOfWeek.setDate(firstDayOfWeek.getDate() + 6); // Add 6 days to get Saturday
+
+  
+
   const handleDateChange = (delta) => {
     setViewDate((prev) => {
       const newDate = new Date(prev); // Create a new Date object to avoid mutating state directly
@@ -84,6 +95,7 @@ function App() {
       <div className="App">
       <button onClick={()=>handleDateChange(-1)}> Back</button><button onClick={()=>handleDateChange(1)}> Next</button><h1>{formatDate(viewDate)}</h1>
       <button onClick={()=>setViewDate(new Date())}> Today</button>
+      <h2 style={{marginTop:10}}>Week: {formatDate(firstDayOfWeek)} * {formatDate(lastDateOfWeek)}</h2>
       <SummaryBox  date={viewDate} update={update} setUpdate={setUpdate}/>
       <ShiftTable   date={viewDate} update={update} setUpdate={setUpdate}/>
       <form onSubmit={handleSubmit}>
